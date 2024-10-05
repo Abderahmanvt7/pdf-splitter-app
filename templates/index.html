@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Splitter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+      <div class="text-center mb-8">
+        <h1 class="text-2xl font-bold text-gray-900">PDF Splitter</h1>
+        <p class="mt-2 text-gray-600">
+          Upload a PDF and specify page ranges to split
+        </p>
+      </div>
+
+      <form id="splitForm" class="space-y-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">
+            Select PDF File
+          </label>
+          <input
+            type="file"
+            id="pdfFile"
+            name="pdf_file"
+            accept=".pdf"
+            required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" />
+        </div>
+
+        <div id="rangesContainer" class="space-y-4">
+          <label class="block text-sm font-medium text-gray-700">
+            Page Ranges
+          </label>
+          <div class="range-input flex space-x-2">
+            <input
+              type="number"
+              placeholder="Start"
+              min="1"
+              class="start-page w-2/5 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required />
+            <input
+              type="number"
+              placeholder="End"
+              min="1"
+              class="end-page w-2/5 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required />
+            <button
+              type="button"
+              class="remove-range w-1/5 border border-transparent text-lg font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              onclick="removeRange(this)">
+              x
+            </button>
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <button
+            type="button"
+            id="addRange"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Add Range
+          </button>
+          <button
+            type="submit"
+            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Split PDF
+          </button>
+        </div>
+      </form>
+
+      <div id="error" class="mt-4 text-red-600 hidden"></div>
+      <div id="loading" class="mt-4 text-gray-600 hidden">Processing...</div>
+    </div>
+
+    <!-- Load the external JavaScript file -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
+</html>
