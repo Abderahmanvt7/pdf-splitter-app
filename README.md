@@ -16,6 +16,9 @@ A web-based tool that allows users to split PDF files into multiple documents ba
 - ⚡ Asynchronous processing
 - 🔒 Basic security features
 
+## Demo
+Try out the live demo: [PDF Splitter Demo](https://pdf-splitter-olf6.onrender.com)
+
 ## Installation
 
 ### Prerequisites
