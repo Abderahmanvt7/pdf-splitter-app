@@ -19,7 +19,7 @@ def split_pdf(input_path, ranges):
     reader = PdfReader(input_path)
     base_name = os.path.splitext(os.path.basename(input_path))[0]
     
-    for start, end in ranges:
+    for start, end, file_name in ranges:
         # Adjust for 0-based indexing
         start_idx = start - 1
         end_idx = min(end, len(reader.pages))
@@ -36,7 +36,7 @@ def split_pdf(input_path, ranges):
         writer.write(output_buffer)
         output_buffer.seek(0)
         
-        filename = f"{base_name}_pages_{start}-{end}.pdf"
+        filename = f"{file_name}.pdf" if file_name else f"{base_name}_pages_{start}-{end}.pdf"
         output_files.append((filename, output_buffer))
     
     return output_files
@@ -59,15 +59,17 @@ def split():
     
     # Parse ranges from form data
     ranges_str = request.form.get('ranges', '')
+
     try:
         # Convert ranges string to list of tuples
         ranges = []
         for range_str in ranges_str.split(','):
             if range_str.strip():
-                start, end = map(int, range_str.strip().split('-'))
-                ranges.append((start, end))
+                start, end, file_name = range_str.strip().split('-')
+                ranges.append((int(start), int(end), file_name))
     except ValueError:
         return jsonify({'error': 'Invalid range format'}), 400
+
     
     if not ranges:
         return jsonify({'error': 'No ranges specified'}), 400

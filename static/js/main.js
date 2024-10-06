@@ -17,20 +17,29 @@ document.getElementById("addRange").addEventListener("click", () => {
   const newRange = document.createElement("div");
   newRange.className = "range-input flex space-x-2";
   newRange.innerHTML = `
-            <input type="number" 
-                   placeholder="Start" 
-                   min="1" 
-                   class="start-page w-1/3 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                   required>
-            <input type="number" 
-                   placeholder="End" 
-                   min="1" 
-                   class="end-page w-1/3 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                   required>
-            <button type="button" 
-                    class="remove-range w-1/3 px-3 py-2 border border-transparent text-sm font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                    onclick="removeRange(this)">
-                Remove
+            <input
+              type="number"
+              placeholder="Start"
+              min="1"
+              class="start-page w-2/5 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required />
+            <input
+              type="number"
+              placeholder="End"
+              min="1"
+              class="end-page w-2/5 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required />
+            <input
+              type="text"
+              placeholder="Name"
+              min="1"
+              class="file-name w-2/5 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+               />
+            <button
+              type="button"
+              class="remove-range w-1/5 border border-transparent text-lg font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+              onclick="removeRange(this)">
+              x
             </button>
         `;
   container.appendChild(newRange);
@@ -49,8 +58,9 @@ document.getElementById("splitForm").addEventListener("submit", async (e) => {
   document.querySelectorAll(".range-input").forEach((range) => {
     const start = range.querySelector(".start-page").value;
     const end = range.querySelector(".end-page").value;
+    const fileName = range.querySelector(".file-name").value;
     if (start && end) {
-      ranges.push(`${start}-${end}`);
+      ranges.push(`${start}-${end}-${fileName}`);
     }
   });
 
