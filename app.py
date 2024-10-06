@@ -60,12 +60,16 @@ def split():
     # Parse ranges from form data
     ranges_str = request.form.get('ranges', '')
 
+    for r in ranges_str.split(',,,'):
+        r_s = r.split(';;;')
+        print(f"splitter r_s {r_s}")
+        print(f"splitter len: {len(r_s)}")
     try:
         # Convert ranges string to list of tuples
         ranges = []
-        for range_str in ranges_str.split(','):
+        for range_str in ranges_str.split(',,,'):
             if range_str.strip():
-                start, end, file_name = range_str.strip().split('-')
+                start, end, file_name = range_str.strip().split(';;;')
                 ranges.append((int(start), int(end), file_name))
     except ValueError:
         return jsonify({'error': 'Invalid range format'}), 400

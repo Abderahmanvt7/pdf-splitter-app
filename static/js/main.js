@@ -9,6 +9,7 @@ function removeRange(button) {
     // If it's the last range, just clear the inputs
     rangeInput.querySelector(".start-page").value = "";
     rangeInput.querySelector(".end-page").value = "";
+    rangeInput.querySelector(".file-name").value = "";
   }
 }
 
@@ -34,7 +35,7 @@ document.getElementById("addRange").addEventListener("click", () => {
               placeholder="Name"
               min="1"
               class="file-name w-2/5 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-               />
+              />
             <button
               type="button"
               class="remove-range w-1/5 border border-transparent text-lg font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
@@ -60,13 +61,13 @@ document.getElementById("splitForm").addEventListener("submit", async (e) => {
     const end = range.querySelector(".end-page").value;
     const fileName = range.querySelector(".file-name").value;
     if (start && end) {
-      ranges.push(`${start}-${end}-${fileName}`);
+      ranges.push(`${start};;;${end};;;${fileName}`);
     }
   });
 
   const formData = new FormData();
   formData.append("pdf_file", document.getElementById("pdfFile").files[0]);
-  formData.append("ranges", ranges.join(","));
+  formData.append("ranges", ranges.join(",,,"));
 
   try {
     const response = await fetch("/split", {
