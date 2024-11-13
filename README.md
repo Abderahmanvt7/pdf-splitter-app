@@ -8,6 +8,27 @@
 
 A web-based tool that allows users to split PDF files into multiple documents based on specified page ranges. Built with Flask and PyPDF2, featuring a clean and responsive user interface.
 
+## Table of Contents
+1. [Features](#features)
+2. [Demo](#demo)
+3. [Installation](#installation)
+   - [Prerequisites](#prerequisites)
+   - [Local Setup](#local-setup)
+4. [Usage](#usage)
+5. [Project Structure](#project-structure)
+6. [Technology Stack](#technology-stack)
+   - [Backend](#backend)
+   - [Frontend](#frontend)
+7. [Customization](#customization)
+   - [Modifying the UI](#modifying-the-ui)
+   - [Extending Functionality](#extending-functionality)
+   - [Configuration Options](#configuration-options)
+8. [Contributing](#contributing)
+9. [License](#license)
+10. [Acknowledgments](#acknowledgments)
+11. [Support](#support)
+
+
 ## Features
 
 - 📤 PDF file upload
@@ -160,4 +181,4 @@ If you encounter any problems or have suggestions:
 
 ---
 
-Made with ❤️ by [Abderahman HAMILI](https://github.com/Abderahmanvt7)
+Made with ❤️ by [Abderahman HAMILI](https://abderahmanhamili.vercel.app/)
